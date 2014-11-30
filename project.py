@@ -40,7 +40,7 @@ def day_forest_03():
 		print('You do not want to go backwards!')
 		day_forest_03()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		day_forest_03()
 	else:
 		print('Try using a cardinal direction!')
@@ -66,7 +66,7 @@ def forest_02_03():
 	elif move == 'south':
 		forest_04()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_02_02()
 	elif move == 'look':
 		# start from top of program. it will give the same description as move will
@@ -84,7 +84,7 @@ def village_01_01():
 	if move == 'east':
 		village_02()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		village_01_01()
 	else:
 		print('Hint: Try using a cardinal direction!')
@@ -109,7 +109,7 @@ def salesman():
 		inventory = inventory.append('flowers')
 		store_exit()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		salesman()
 	else:
 		salesman()
@@ -145,7 +145,7 @@ def forest_01_03():
 	elif move == 'exit':
 		forest_01_03()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_01_03()
 	else:
 		print('Choose from north, east, south, west, look, and cabin.')
@@ -183,7 +183,7 @@ def forest_02_02():
 	elif move == 'south':
 		forest_04()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_02_02()
 	elif move == 'look':
 		# start from top of program. it will give the same description as move will
@@ -202,10 +202,11 @@ def itemless_cabin():
 		# go back into the forest
 		forest_01_03()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		itemless_cabin()
 	else:
 		# give a hint
+		print("You might want to 'exit' the cabin.")
 		itemless_cabin()
 
 def cabin_take():
@@ -217,10 +218,11 @@ def cabin_take():
 		inventory = inventory.append('bow', 'axe', 'matches')
 		itemless_cabin()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		cabin_take()
 	else:
 		print("You need more than just the bow. Hint: Try 'all'")
+		cabin_take()
 
 def forest_02():
 	""" Will give a brief description of the second forest. This function will
@@ -244,7 +246,7 @@ def forest_02():
 		# forest_04()
 		forest_02()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_02()
 	elif move == 'look':
 		# start from top of program. it will give the same description as move will
@@ -266,6 +268,9 @@ def civilian():
 	elif move == 'no':
 		print('The civilian tells you to get your own flowers!')
 		salesman()
+	else:
+		print("Try entering 'yes' or 'no'.")
+		civilian()
 
 def cabin_01():
 	""" If the user enters the cabin before they get they sword the stranger
@@ -309,7 +314,7 @@ def forest_01_01():
 	elif move == 'cabin':
 		cabin_01()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_01_01()
 	else:
 		print('Choose from north, east, south, west, look, and cabin.')
@@ -322,12 +327,13 @@ def village_01():
 
 	move = input('You are now in the village. You see a store and have an idea.\n')
 	move.lower()
-	if move == 'store':
+	if move == 'store' or 'enter':
 		store()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		village_01()
 	else:
+		print("The 'store' is very appealing.")
 		village_01()
 
 def speak():
@@ -340,9 +346,10 @@ def speak():
 	elif move == 'civilian':
 		civilian()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		speak()
 	else:
+		print("The 'civilian' or the 'salesman'?")
 		speak()
 
 def store():
@@ -356,7 +363,7 @@ def store():
 	if move == 'speak':
 		speak()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		store()
 	else:
 		store()
@@ -369,23 +376,23 @@ def village_02():
 	if move == 'home':
 		home()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		village_02()
 	else:
-		print('You need to go home.')
+		print("You need to go 'home'.")
 		village_02()
 
 def home():
 	""" The user enters the home."""
 	move = input('You have entered the home with flowers in your hand.\n')
 	move.lower()
-	if move == 'flowers':
+	if move == 'flowers' or 'give':
 		flowers()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		home()
 	else:
-		print('You need to give the flowers to your family.')
+		print("You need to 'give' the 'flowers' to your family.")
 		home()
 
 def flowers():
@@ -393,13 +400,13 @@ def flowers():
 
 	print('You give the flowers to your family. You won the game!!!')
 	# start the game over again
-	# play()
+	play()
 
 
 def battlefield():
 	"""Will tell the user that they have died and will prompt the user to start
 	the game over again"""
-	print('You have just ran back into battle with no weapons or armor.'
+	print('You have just ran back into battle with no armor.'
 			'You have just been killed brutely.')
 	# starts the game over again
 	play()
@@ -415,7 +422,7 @@ def cabin():
 	if move == 'exit':
 		forest_01()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		cabin()
 	elif move == 'sword':
 		print('You have killed the stranger')
@@ -433,7 +440,7 @@ def killed_stranger():
 	if move == 'take':
 		cabin_take()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		killed_stranger()
 	elif move == 'look':
 		killed_stranger()
@@ -450,9 +457,10 @@ def sleep():
 	    print('You go to sleep.')
 	    day_forest_03()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		sleep()
 	else:
+		print('Hint: What do most people do at night?')
 		sleep()
 		
 def enter_tent():
@@ -464,10 +472,11 @@ def enter_tent():
 		print('You have entered the tent.')
 		sleep()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		enter_tent()
 	else:
-	    enter_tent()
+		print("Hint: The 'tent' looks really nice.")
+		enter_tent()
 
 def tent():
 	""" The user will build a tent. They will have to build a tent to surivive."""
@@ -478,9 +487,10 @@ def tent():
 		print('You have built the tent!!!')
 		enter_tent()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		tent()
 	else:
+		print("Hint: You have 'this' in your inventory!")
 		tent()
 
 def fire():
@@ -497,21 +507,21 @@ def fire():
 		else:
 			fire()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		fire()
 	else:
-		print('Use ___ to start the fire.')
+		print('Hint: Use ___ to start the fire.')
 		fire()
 
 def wood():
 	""" The user will have to collect wood that using the axe."""
 
-	move = input('Hint: Collect wood using ___.\n')
+	move = input('Hint: Collect wood using an ___.\n')
 	move.lower()
 	if move == 'axe':
 		axe()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		wood()
 	else:
 		wood()
@@ -530,7 +540,7 @@ def forest_03():
 	elif move == 'wood':
 		wood()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_03()
 	else:
 		print('Hint: What fuels a fire?')
@@ -545,7 +555,7 @@ def forest_04_01():
 		# start forest_04_01 over again
 		forest_04_01()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_04_01()
 	elif move == 'north':
 		print('You do not want to go north.')
@@ -559,6 +569,7 @@ def forest_04_01():
 		print('You are at the end of the forest.')
 		forest_04_01()
 	else:
+		print('Hint: Try using a cardinal direction.')
 		forest_04_01()
 
 def wolf_kill():
@@ -574,7 +585,7 @@ def wolf_kill():
 			print('You have been killed by the wolf. You lose.')
 			play()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		print('There is no time to look! You have been killed by the wolf. You lose.')
 		play()
 	elif move == 'sword':
@@ -587,6 +598,9 @@ def wolf_kill():
 			print('You have been killd by the wolf. You lose.')
 			# start the game over again
 			play()
+	else:
+		print('You did not act quick enough! You have been killed by the wolf! You lose!')
+		play()
 
 def wolf_attack():
 	""" The wolf is attacking the user"""
@@ -623,14 +637,14 @@ def forest_04():
 	elif move == 'east':
 		forest_03()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_04()
 	elif move == 'south':
 		print('You cannot go any further.')
 		# start forest_04 over again
 		forest_04()
 	else:
-		print('Hint: Look harder at the wolf.')
+		print("Hint: 'Look' harder at the wolf.")
 		forest_04()
 
 def swordless_cave():
@@ -641,11 +655,12 @@ def swordless_cave():
 	if move == 'exit':
 		forest_02()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		swordless_cave()
 	elif move == 'look':
 		swordless_cave()
 	else:
+		print('It looks nice outside of the cave.')
 		swordless_cave()
 
 def take():
@@ -657,7 +672,7 @@ def take():
 		inventory = inventory.append('sword')
 		swordless_cave()
 	else:
-		print('Hint: The sword is for the taking!!!')
+		print("Hint: The sword is for the 'taking'!!!")
 		take()
 
 def cave():
@@ -672,14 +687,14 @@ def cave():
 	elif move == 'exit':
 		forest_02_01()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		cave()
 	elif move == 'look':
 		# start cave() over again
 		cave()
 	else:
 		# prompt the user to use look or exit
-		print("Try using commands 'look' or 'exit'.")
+		print("Try using commands 'look', 'take', or 'exit'.")
 		# start cabin() over again
 		cave()
 		
@@ -704,13 +719,13 @@ def forest_02_01():
 		print('You cannot go this far yet!!!')
 		forest_02_01()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_02_01()
 	elif move == 'look':
 		# start from top of program. it will give the same description as move will
 		forest_02_01()
 	else:
-		print('You must choose from a cardinal direction, look, or inventory.')
+		print("You must choose from a cardinal direction, 'look', 'cave', or 'inventory'.")
 		forest_02_01()
 
 def forest_01():
@@ -739,7 +754,7 @@ def forest_01():
 	elif move == 'exit':
 		forest_01()
 	elif move == 'inventory':
-		return inventory
+		print(inventory)
 		forest_01()
 	else:
 		print('Choose from north, east, south, west, look, and cabin.')
