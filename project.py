@@ -1,10 +1,4 @@
-inventory = ['llama']
-# code inventory in all functions
-# put hint to kill the stranger
-# create a new cabin with dead stranger so user can go back without having to kill the stranger again
-# fix take function for inside of the cabin.
-# don't allow user to go south until after killing the stranger
-#
+inventory = []
 
 def open_field():
 	" The user will enter an open field and meet the end of the map."
@@ -112,7 +106,7 @@ def salesman():
 			"(noticing your clothes) says 'Anything for our military!'"
 			'You then leave the store to go home.')
 			# prompt the user to exit
-			inventory = inventory.append('flowers')
+		inventory = inventory.append('flowers')
 		store_exit()
 	elif move == 'inventory':
 		return inventory
