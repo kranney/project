@@ -78,6 +78,9 @@ def forest_02_03():
 def village_01_01():
 	""" The user now has the flowers and needs to go home to his/her family."""
 
+	# i want to keep track of the number of moves. once the user goes over a specific
+	# number of moves they lose the game.
+
 	move = input('You now have the flowers and are excited to go home to your '
 		'family\n')
 	move.lower
@@ -106,7 +109,7 @@ def salesman():
 			"(noticing your clothes) says 'Anything for our military!'"
 			'You then leave the store to go home.')
 			# prompt the user to exit
-		inventory = inventory.append('flowers')
+		inventory.append('flowers')
 		store_exit()
 	elif move == 'inventory':
 		print(inventory)
@@ -124,6 +127,7 @@ def forest_01_03():
 	print('You are in the forest and you see a lighted cabin.')
 	move = input('\n')
 	move.lower()
+	max_moves()
 	if move == 'north':
 		battlefield()
 	elif move == 'east':
@@ -215,7 +219,7 @@ def cabin_take():
 	move = input('What would you like to take?\n')
 	move.lower()
 	if move == 'all':
-		inventory = inventory.append('bow', 'axe', 'matches')
+		inventory.append('bow', 'axe', 'matches')
 		itemless_cabin()
 	elif move == 'inventory':
 		print(inventory)
@@ -290,12 +294,34 @@ def cabin_01():
 		play()
 
 def forest_01_01():
-	""" The user will be forced to go to the cave or into the cabin. If user
+	""" The user will be forced to go to forest or into the cabin. If user
 	goes into the cabin they will die."""
+
+	# if the user reaches so many steps in the function they loose.
+	# if they have less than 'x' many of steps they can continue
+	# to go through the function
+
+	# start off with 0 steps
+	# add a step each time the user makes a move
+
+	
+	# steps = 0
+	# while steps != 3:
+	# 	# run the function and add 1 to steps
+	# 	if steps != 3:
+	# 		continue
+	# 	else:
+	# 		print('You loose!')
+	# 		return play()
+	
+		# but when steps is greater than 3
+			# have the user lose.
+		
 
 	print('You are in the forest and you see a cabin.')
 	move = input('\n')
 	move.lower()
+	# max_moves()
 	if move == 'north':
 		battlefield()
 	elif move == 'east':
@@ -314,9 +340,11 @@ def forest_01_01():
 	elif move == 'cabin':
 		cabin_01()
 	elif move == 'inventory':
+		steps = steps + 1
 		print(inventory)
 		forest_01_01()
 	else:
+		# steps = steps + 1
 		print('Choose from north, east, south, west, look, and cabin.')
 		# run forest_01 again.
 		forest_01_01()
@@ -486,11 +514,12 @@ def tent():
 	if move == 'tent':
 		print('You have built the tent!!!')
 		enter_tent()
+		inventory.remove('tent')
 	elif move == 'inventory':
 		print(inventory)
 		tent()
 	else:
-		print("Hint: You have 'this' in your inventory!")
+		print("Hint: You have a '____' in your inventory!")
 		tent()
 
 def fire():
@@ -666,14 +695,16 @@ def swordless_cave():
 def take():
 	""" Will allow the user to take the sword."""
 
-	take = input('What would you like to take?\n')
-	take.lower()
-	if take == 'sword':
-		inventory = inventory.append('sword')
-		swordless_cave()
-	else:
-		print("Hint: The sword is for the 'taking'!!!")
-		take()
+	take = ""
+	str(take)
+	while take != 'sword':
+		take = input('What would you like to take?\n')
+		take.lower()
+		if take == 'sword':
+			inventory.append('sword')
+			swordless_cave()
+		else:
+			print("Hint: The sword is for the 'taking'!!!")
 
 def cave():
 	""" This function is the cave function. It will allow the user to exit and
@@ -780,7 +811,7 @@ def play():
 		' You have ran into the forest to hide from the army so you cannot'
 		' be found and can begin to find your way home. It is cold and you are starting'
 		' to shiver you need to find shelter and heat before it is completely'
-		' dark.\n Enter moves to find what moves are available to you.\n')
+		' dark.\n')
 			forest_01_01()
 		else:
 			print("You must enter 'yes' or 'no'?")
