@@ -1,4 +1,5 @@
 inventory = []
+steps = 0
 
 def open_field():
 	" The user will enter an open field and meet the end of the map."
@@ -46,35 +47,6 @@ def day_forest_03():
 		print('Try using a cardinal direction!')
 		day_forest_03()
 
-def forest_02_03():
-	""" The user will enter the north west side of the forest. Will be forced into 
-	going south to face the wolf."""
-
-	move = input('You are in the forest. You see a cave in the distance. \n')
-	move.lower()
-	if move == 'cave':
-		print('The cave has collapsed! You may no longer enter!')
-		forest_02_03()
-	elif move == 'east':
-		forest_01_03()
-	elif move == 'west':
-		print('You are at the end of the forest')
-		# run this program again
-		forest_02_02()
-	elif move == 'north':
-		battlefield()
-	elif move == 'south':
-		forest_04()
-	elif move == 'inventory':
-		print(inventory)
-		forest_02_02()
-	elif move == 'look':
-		# start from top of program. it will give the same description as move will
-		forest_02_02()
-	else:
-		print('You must choose from a cardinal direction, look, or inventory.')
-		forest_02_02()
-
 def village_01_01():
 	""" The user now has the flowers and needs to go home to his/her family."""
 
@@ -86,6 +58,15 @@ def village_01_01():
 	move.lower
 	if move == 'east':
 		village_02()
+	elif move == 'west':
+		print('You are at the end of the village.')
+		village_01_01()
+	elif move == 'south':
+		print('You are at the end of the village.')
+		village_01_01()
+	elif move == 'north':
+		print('You do not want to go back to the forest!')
+		village_01_01()
 	elif move == 'inventory':
 		print(inventory)
 		village_01_01()
@@ -127,7 +108,6 @@ def forest_01_03():
 	print('You are in the forest and you see a lighted cabin.')
 	move = input('\n')
 	move.lower()
-	max_moves()
 	if move == 'north':
 		battlefield()
 	elif move == 'east':
@@ -160,10 +140,14 @@ def axe():
 	""" The user will have to use the axe on the trees."""
 	move = input('Use axe on what?\n')
 	move.lower()
-	if move == 'tree' or 'trees':
+	if move == 'tree':
 		print('You now have fire wood!!!')
+		inventory.append('wood')
 		fire()
-		inventory = inventory.append('wood')
+	elif move == 'trees':
+		print('You now have fire wood!!!')
+		inventory.append('wood')
+		fire()
 	else:
 		print('Hint: The forest is full of these!!!')
 		axe()
@@ -175,7 +159,9 @@ def forest_02_02():
 	move = input('You are in the forest. You see a cave in the distance. \n')
 	move.lower()
 	if move == 'cave':
-		cave()
+		print('There has been a land slide while you were gone. You can no '
+			'enter the cave!')
+		forest_02_02()
 	elif move == 'east':
 		forest_01_03()
 	elif move == 'west':
@@ -219,7 +205,10 @@ def cabin_take():
 	move = input('What would you like to take?\n')
 	move.lower()
 	if move == 'all':
-		inventory.append('bow', 'axe', 'matches')
+		inventory.append('bow')
+		inventory.append('axe')
+		inventory.append('matches')
+		inventory.append('tent')
 		itemless_cabin()
 	elif move == 'inventory':
 		print(inventory)
@@ -267,7 +256,7 @@ def civilian():
 	move.lower()
 	if move == 'yes':
 		print('The civilian gives you the flowers.')
-		inventory = inventory.append('flowers')
+		inventory.append('flowers')
 		store_exit()
 	elif move == 'no':
 		print('The civilian tells you to get your own flowers!')
@@ -287,7 +276,7 @@ def cabin_01():
 	if move == 'exit':
 		forest_01_01()
 	elif move == 'inventory':
-		inventory = inventory.append()
+		return inventory
 	else:
 		print('The stranger realized you are from the army and shoots you'
 			' with his bow! You lose!!!')
@@ -304,18 +293,16 @@ def forest_01_01():
 	# start off with 0 steps
 	# add a step each time the user makes a move
 
-	
-	# steps = 0
 	# while steps != 3:
-	# 	# run the function and add 1 to steps
-	# 	if steps != 3:
-	# 		continue
-	# 	else:
-	# 		print('You loose!')
-	# 		return play()
-	
+	# 	steps =steps + 1
+		# run the function and add 1 to steps
+		# if steps != 3:
+		# 	continue
+		# else:
+		# 	print('You loose!')
+	# steps
 		# but when steps is greater than 3
-			# have the user lose.
+		# 	have the user lose.
 		
 
 	print('You are in the forest and you see a cabin.')
@@ -340,7 +327,6 @@ def forest_01_01():
 	elif move == 'cabin':
 		cabin_01()
 	elif move == 'inventory':
-		steps = steps + 1
 		print(inventory)
 		forest_01_01()
 	else:
@@ -463,7 +449,7 @@ def killed_stranger():
 	""" Explains what happens after you kill the stranger."""
 
 	move = input('The stranger is dead and has the bow laying on ground.'
-		'You see an axe and matches laying on the table.\n')
+		'You see an axe, matches, and a tent laying on the table.\n')
 	move.lower()
 	if move == 'take':
 		cabin_take()
@@ -496,7 +482,10 @@ def enter_tent():
 
 	move = input('It is getting darker. Your tent is built next to the fire. \n')
 	move.lower()
-	if move == 'enter' or 'tent':
+	if move == 'enter':
+		print('You have entered the tent.')
+		sleep()
+	elif move == 'tent':
 		print('You have entered the tent.')
 		sleep()
 	elif move == 'inventory':
@@ -810,7 +799,7 @@ def play():
 		' fierce battle and are just trying to find your way home.'
 		' You have ran into the forest to hide from the army so you cannot'
 		' be found and can begin to find your way home. It is cold and you are starting'
-		' to shiver you need to find shelter and heat before it is completely'
+		' to shiver.You need to find shelter and heat before it is completely'
 		' dark.\n')
 			forest_01_01()
 		else:
